@@ -12,7 +12,7 @@ class CompanyAPI {
   }
 
   /**
-   * UserAPI - Retrive all companies
+   * CompanyAPI - Retrive all companies
    * @param {express.Request} req Express request object
    * @param {express.Response} res Express response object
    * @param {express.NextFunction} next Express next middleware function
@@ -22,7 +22,7 @@ class CompanyAPI {
   }
 
   /**
-   * UserAPI - Retrive company by id
+   * CompanyAPI - Retrive company by id
    * @param {express.Request} req Express request object
    * @param {express.Response} res Express response object
    * @param {express.NextFunction} next Express next middleware function
@@ -32,7 +32,7 @@ class CompanyAPI {
   }
 
   /**
-  * UserAPI - Create new company
+  * CompanyAPI - Create new company
   * @param {express.Request} req Express request object
   * @param {express.Response} res Express response object
   * @param {express.NextFunction} next Express next middleware function
@@ -42,7 +42,7 @@ class CompanyAPI {
   }
 
   /**
-  * UserAPI - Update company by id
+  * CompanyAPI - Update company by id
   * @param {express.Request} req Express request object
   * @param {express.Response} res Express response object
   * @param {express.NextFunction} next Express next middleware function
@@ -52,7 +52,7 @@ class CompanyAPI {
   }
 
   /**
-  * UserAPI - Update part of the resource company by id
+  * CompanyAPI - Update part of the resource company by id
   * @param {express.Request} req Express request object
   * @param {express.Response} res Express response object
   * @param {express.NextFunction} next Express next middleware function
@@ -62,7 +62,7 @@ class CompanyAPI {
   }
 
   /**
-  * UserAPI - Delete company by id
+  * CompanyAPI - Delete company by id
   * @param {express.Request} req Express request object
   * @param {express.Response} res Express response object
   * @param {express.NextFunction} next Express next middleware function
