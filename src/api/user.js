@@ -1,4 +1,5 @@
 const express = require('express');
+const { User } = require('../models');
 
 class UserAPI {
   constructor() {
@@ -17,8 +18,14 @@ class UserAPI {
    * @param {express.Response} res Express response object
    * @param {express.NextFunction} next Express next middleware function
    */
-  async getUsers(req, res, next) {
-    res.sendStatus(501)
+  // eslint-disable-next-line class-methods-use-this
+  async getUsers(_req, res, next) {
+    try {
+      const users = await User.findAll();
+      res.status(200).json(users);
+    } catch (error) {
+      next(error);
+    }
   }
 
   /**
@@ -27,8 +34,17 @@ class UserAPI {
    * @param {express.Response} res Express response object
    * @param {express.NextFunction} next Express next middleware function
    */
+  // eslint-disable-next-line class-methods-use-this
   async getUserById(req, res, next) {
-    res.sendStatus(501)
+    const { id } = req.params;
+
+    try {
+      const user = await User.findByPk(id);
+      if (!user) res.sendStatus(204);
+      else res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
   }
 
   /**
@@ -37,8 +53,30 @@ class UserAPI {
   * @param {express.Response} res Express response object
   * @param {express.NextFunction} next Express next middleware function
   */
+  // eslint-disable-next-line class-methods-use-this
   async createUser(req, res, next) {
-    res.sendStatus(501)
+    const {
+      full_name,
+      phone,
+      age,
+      email,
+      position,
+      address
+    } = req.body;
+
+    try {
+      const user = await User.create({
+        full_name,
+        phone,
+        age,
+        email,
+        position,
+        address,
+      });
+      res.status(201).json(user);
+    } catch (error) {
+      next(error);
+    }
   }
 
   /**
@@ -47,8 +85,37 @@ class UserAPI {
   * @param {express.Response} res Express response object
   * @param {express.NextFunction} next Express next middleware function
   */
+  // eslint-disable-next-line class-methods-use-this
   async putUserById(req, res, next) {
-    res.sendStatus(501)
+    const { id } = req.params;
+    const {
+      full_name,
+      phone,
+      age,
+      email,
+      position,
+      address
+    } = req.body;
+
+    try {
+      const user = await User.findByPk(id);
+
+      if (!user) res.sendStatus(204);
+      else {
+        const userUpdate = await user.update({
+          full_name,
+          phone,
+          age,
+          email,
+          position,
+          address
+        });
+        res.status(200).json(user);
+
+      }
+    } catch (error) {
+      next(error);
+    }
   }
 
   /**
@@ -57,8 +124,37 @@ class UserAPI {
   * @param {express.Response} res Express response object
   * @param {express.NextFunction} next Express next middleware function
   */
+  // eslint-disable-next-line class-methods-use-this
   async patchUserById(req, res, next) {
-    res.sendStatus(501)
+    const { id } = req.params;
+    const {
+      full_name,
+      phone,
+      age,
+      email,
+      position,
+      address
+    } = req.body;
+
+    try {
+      const user = await User.findByPk(id);
+
+      if (!user) res.sendStatus(204);
+      else {
+        const userUpdate = await user.update({
+          full_name: full_name || user.full_name,
+          phone: phone || user.phone,
+          age: age || user.age,
+          email: email || user.email,
+          position: position || user.position,
+          address: address || user.address,
+        });
+
+        res.status(200).json(user);
+      }
+    } catch (error) {
+      next(error);
+    }
   }
 
   /**
@@ -67,8 +163,21 @@ class UserAPI {
   * @param {express.Response} res Express response object
   * @param {express.NextFunction} next Express next middleware function
   */
+  // eslint-disable-next-line class-methods-use-this
   async deleteUserById(req, res, next) {
-    res.sendStatus(501)
+    const { id } = req.params;
+
+    try {
+      const user = await User.findByPk(id);
+      if (!user) res.sendStatus(204);
+      else {
+        const userDelete = await user.destroy();
+
+        res.status(200).json(user);
+      }
+    } catch (error) {
+      next(error);
+    }
   }
 
   get router() {
