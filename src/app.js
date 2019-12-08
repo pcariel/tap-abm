@@ -28,4 +28,20 @@ app.use('/users', isAuth, userAPI.router);
 app.use('/company', companyAPI.router);
 app.use('/login', loginAPI.router);
 
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.json({
+    errors: {
+      message: err.message,
+      error: {},
+    },
+  });
+});
+
 module.exports = app;
