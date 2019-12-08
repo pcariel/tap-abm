@@ -1,4 +1,5 @@
 const express = require('express');
+const { Company } = require('../models');
 
 class CompanyAPI {
   constructor() {
@@ -17,8 +18,30 @@ class CompanyAPI {
    * @param {express.Response} res Express response object
    * @param {express.NextFunction} next Express next middleware function
    */
+  // eslint-disable-next-line class-methods-use-this
   async getCompanies(req, res, next) {
-    res.sendStatus(501)
+    let { sort_by, limit, offset } = req.query;
+    limit = limit || 2;
+    offset = offset || 0;
+
+    try {
+      const total = await Company.count();
+      const users = await Company.findAll({
+        limit,
+        offset,
+        order: [
+          ['name', sort_by || 'ASC'],
+        ],
+      });
+      res.status(200).json({
+        total,
+        pages: total / limit,
+        page: offset + 1,
+        items: users,
+      });
+    } catch (error) {
+      next(error);
+    }
   }
 
   /**
@@ -37,8 +60,28 @@ class CompanyAPI {
   * @param {express.Response} res Express response object
   * @param {express.NextFunction} next Express next middleware function
   */
+  // eslint-disable-next-line class-methods-use-this
   async createCompany(req, res, next) {
-    res.sendStatus(501)
+    const {
+      name,
+      legal_name,
+      email,
+      phone,
+      address,
+    } = req.body;
+
+    try {
+      const user = await Company.create({
+        name,
+        legal_name,
+        email,
+        phone,
+        address,
+      });
+      res.status(201).json(user);
+    } catch (error) {
+      next(error);
+    }
   }
 
   /**
