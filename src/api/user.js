@@ -73,7 +73,7 @@ class UserAPI {
       address,
       company_id,
     } = req.body;
-    logger.debug(`Request createUser incomming Body: ${req.body}`);
+    logger.debug(`Request createUser incomming Body: ${JSON.stringify(req.body)}`);
 
     try {
       const company = await Company.findByPk(company_id);
@@ -115,7 +115,7 @@ class UserAPI {
       position,
       address
     } = req.body;
-    logger.debug(`Request putUserById incomming id: ${id}, Body: ${req.body}`);
+    logger.debug(`Request putUserById incomming id: ${id}, Body: ${JSON.stringify(req.body)}`);
 
     try {
       const user = await User.findByPk(id);
@@ -157,7 +157,7 @@ class UserAPI {
       position,
       address
     } = req.body;
-    logger.debug(`Request patchUserById incomming id: ${id}, Body: ${req.body}`);
+    logger.debug(`Request patchUserById incomming id: ${id}, Body: ${JSON.stringify(req.body)}`);
 
     try {
       const user = await User.findByPk(id);

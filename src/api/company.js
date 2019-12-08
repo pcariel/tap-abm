@@ -1,5 +1,6 @@
 const express = require('express');
 const { Company } = require('../models');
+const { logger } = require('../logging');
 
 class CompanyAPI {
   constructor() {
@@ -23,6 +24,7 @@ class CompanyAPI {
     let { sort_by, limit, offset } = req.query;
     limit = limit || 2;
     offset = offset || 0;
+    logger.debug(`Request getCompanies incomming query: ${JSON.stringify(req.query)}`);
 
     try {
       const total = await Company.count();
@@ -40,6 +42,8 @@ class CompanyAPI {
         items: users,
       });
     } catch (error) {
+      logger.error(`Request getCompanies ${error}`);
+
       next(error);
     }
   }
@@ -69,6 +73,7 @@ class CompanyAPI {
       phone,
       address,
     } = req.body;
+    logger.debug(`Request createCompany incomming Body: ${JSON.stringify(req.body)}`);
 
     try {
       const user = await Company.create({
@@ -80,6 +85,7 @@ class CompanyAPI {
       });
       res.status(201).json(user);
     } catch (error) {
+      logger.error(`Request createCompany ${error}`);
       next(error);
     }
   }
@@ -91,6 +97,7 @@ class CompanyAPI {
   * @param {express.NextFunction} next Express next middleware function
   */
   async putCompanyById(req, res, next) {
+    logger.info('not implement');
     res.sendStatus(501)
   }
 
@@ -101,6 +108,7 @@ class CompanyAPI {
   * @param {express.NextFunction} next Express next middleware function
   */
   async patchCompanyById(req, res, next) {
+    logger.info('not implement');
     res.sendStatus(501)
   }
 
@@ -111,6 +119,7 @@ class CompanyAPI {
   * @param {express.NextFunction} next Express next middleware function
   */
   async deleteCompanyById(req, res, next) {
+    logger.info('not implement');
     res.sendStatus(501)
   }
 
