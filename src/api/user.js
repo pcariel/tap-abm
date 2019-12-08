@@ -1,5 +1,6 @@
 const express = require('express');
 const { User, Company } = require('../models');
+const { logger } = require('../logging');
 
 class UserAPI {
   constructor() {
@@ -20,10 +21,13 @@ class UserAPI {
    */
   // eslint-disable-next-line class-methods-use-this
   async getUsers(_req, res, next) {
+    logger.debug('Request getUsers incomming');
+
     try {
       const users = await User.findAll();
       res.status(200).json(users);
     } catch (error) {
+      logger.error(`Request getUsers ${error}`);
       next(error);
     }
   }
@@ -37,6 +41,7 @@ class UserAPI {
   // eslint-disable-next-line class-methods-use-this
   async getUserById(req, res, next) {
     const { id } = req.params;
+    logger.debug(`Request getUserById incomming id: ${id}`);
 
     try {
       const user = await User.findByPk(id, {
@@ -45,6 +50,8 @@ class UserAPI {
       if (!user) res.sendStatus(204);
       else res.status(200).json(user);
     } catch (error) {
+      logger.error(`Request getUserById ${error}`);
+
       next(error);
     }
   }
@@ -66,6 +73,7 @@ class UserAPI {
       address,
       company_id,
     } = req.body;
+    logger.debug(`Request createUser incomming Body: ${req.body}`);
 
     try {
       const company = await Company.findByPk(company_id);
@@ -84,6 +92,8 @@ class UserAPI {
       }
 
     } catch (error) {
+      logger.error(`Request createUser ${error}`);
+
       next(error);
     }
   }
@@ -105,6 +115,7 @@ class UserAPI {
       position,
       address
     } = req.body;
+    logger.debug(`Request putUserById incomming id: ${id}, Body: ${req.body}`);
 
     try {
       const user = await User.findByPk(id);
@@ -123,6 +134,8 @@ class UserAPI {
 
       }
     } catch (error) {
+      logger.error(`Request putUserById ${error}`);
+
       next(error);
     }
   }
@@ -144,6 +157,7 @@ class UserAPI {
       position,
       address
     } = req.body;
+    logger.debug(`Request patchUserById incomming id: ${id}, Body: ${req.body}`);
 
     try {
       const user = await User.findByPk(id);
@@ -162,6 +176,8 @@ class UserAPI {
         res.status(200).json(user);
       }
     } catch (error) {
+      logger.error(`Request patchUserById ${error}`);
+
       next(error);
     }
   }
@@ -175,6 +191,7 @@ class UserAPI {
   // eslint-disable-next-line class-methods-use-this
   async deleteUserById(req, res, next) {
     const { id } = req.params;
+    logger.debug(`Request deleteUserById incomming id: ${id}`);
 
     try {
       const user = await User.findByPk(id);
@@ -185,6 +202,8 @@ class UserAPI {
         res.status(200).json(user);
       }
     } catch (error) {
+      logger.error(`Request deleteUserById ${error}`);
+
       next(error);
     }
   }
