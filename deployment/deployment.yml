@@ -1,0 +1,20 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: tap-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tap-abm
+  template:
+    metadata:
+      labels:
+        app: tap-abm
+    spec:
+      containers:
+        - name: tap-abm
+          image: pcariel/tap-abm:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
