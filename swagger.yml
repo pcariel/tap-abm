@@ -9,7 +9,7 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "petstore.swagger.io"
+host: "localhost:8080"
 basePath: "/"
 tags:
   - name: "company"
@@ -39,6 +39,19 @@ paths:
       responses:
         default:
           description: "successful operation"
+    get:
+      tags:
+        - "user"
+      summary: "Get all user"
+      description: "This can only be done by the logged in user."
+      operationId: "users"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
 
   /user/{id}:
     get:
@@ -137,7 +150,7 @@ paths:
     post:
       tags:
         - "company"
-      summary: "Create user"
+      summary: "Create comnpanh"
       operationId: "createCompany"
       produces:
         - "application/json"
@@ -151,6 +164,30 @@ paths:
       responses:
         default:
           description: "successful operation"
+    get:
+      tags:
+        - "company"
+      summary: "Get all companies"
+      operationId: "companies"
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: offset
+          type: integer
+          required: false
+          description: The number of items to skip before starting to collect the result set.
+        - in: query
+          name: limit
+          type: integer
+          required: false
+          description: The number of items to return.
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Company"
+
   /company/{id}:
     get:
       tags:
