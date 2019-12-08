@@ -24,7 +24,9 @@ class UserAPI {
     logger.debug('Request getUsers incomming');
 
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({
+        include: 'Company',
+      });
       res.status(200).json(users);
     } catch (error) {
       logger.error(`Request getUsers ${error}`);
