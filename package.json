@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon --inspect ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/integration/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,11 @@
     "@types/express-winston": "4.0.0",
     "eslint": "6.7.2",
     "eslint-config-airbnb-base": "14.0.0",
-    "nodemon": "2.0.1"
+    "eslint-plugin-mocha": "6.2.2",
+    "nodemon": "2.0.1",
+    "supertest": "4.0.2",
+    "mocha": "6.2.2",
+    "chai": "4.2.0",
+    "chai-http": "4.3.0"
   }
 }

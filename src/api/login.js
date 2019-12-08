@@ -26,7 +26,7 @@ class LoginAPI {
 
       res.status(200).json({
         token,
-        expiresIn: today.setHours(today.getHours() + 4),
+        expiresIn: today.setHours(today.getHours() + 6),
       });
     } else {
       res.status(400).json({
