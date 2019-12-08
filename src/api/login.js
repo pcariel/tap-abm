@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 
 class LoginAPI {
   constructor() {
@@ -12,8 +13,27 @@ class LoginAPI {
   * @param {express.Response} res Express response object
   * @param {express.NextFunction} next Express next middleware function
   */
+  // eslint-disable-next-line class-methods-use-this
   async auth(req, res, next) {
-    res.sendStatus(501);
+    const { username, password } = req.body;
+    const today = new Date();
+
+    // eslint-disable-next-line eqeqeq
+    if (username == 'admin' && password == 'admin') {
+      const token = jwt.sign({
+        data: 'foobar'
+      }, 'secret', { expiresIn: '6h' });
+
+      res.status(200).json({
+        token,
+        expiresIn: today.setHours(today.getHours() + 4),
+      });
+    } else {
+      res.status(400).json({
+        message: 'Login invalid',
+      });
+    }
+
   }
 
   get router() {
