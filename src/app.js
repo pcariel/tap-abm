@@ -16,12 +16,7 @@ app.use(bodyParser.json());
 app.use(helmet());
 
 // Swagger Config
-const options = {
-  swaggerOptions: {
-    url: 'http://petstore.swagger.io/v2/swagger.json',
-  },
-};
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 // Register Routers

@@ -23,6 +23,10 @@
     {
       "name": "user",
       "description": "Operations about user"
+    },
+    {
+      "name": "login",
+      "description": "Operations about login"
     }
   ],
   "schemes": [
@@ -254,6 +258,17 @@
         "parameters": [
           {
             "in": "query",
+            "name": "sort_by",
+            "type": "string",
+            "enum": [
+              "ASC",
+              "DESC"
+            ],
+            "default": "ASC",
+            "required": false
+          },
+          {
+            "in": "query",
             "name": "offset",
             "type": "integer",
             "required": false,
@@ -410,6 +425,38 @@
           }
         }
       }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "login"
+        ],
+        "summary": "Generate token",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "login",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/LoginResponse"
+            },
+            "description": "successful operation"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -461,6 +508,31 @@
         },
         "address": {
           "type": "string"
+        }
+      }
+    },
+    "LoginRequest": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "admin"
+        },
+        "password": {
+          "type": "string",
+          "example": "admin"
+        }
+      }
+    },
+    "LoginResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "expires_in": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },

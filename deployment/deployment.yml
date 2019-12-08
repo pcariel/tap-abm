@@ -18,3 +18,14 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: DB_USERNAME
+              value: "tap-prod"
+            - name: DB_PASSWORD
+              value: "USING_SECRET"
+            - name: DB_NAME
+              value: "tap"
+            - name: DB_HOSTNAME
+              value: "10.85.160.3"

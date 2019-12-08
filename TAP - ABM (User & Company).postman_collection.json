@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "85103255-3bd4-4b86-9187-a0ae7d13adfe",
+		"_postman_id": "a0e0218a-2764-47a1-9109-cfed27d35943",
 		"name": "TAP - ABM (User & Company)",
 		"description": "TAP - ABM\n\nContact Support: \n{\n\nName : undefined\n\nEmail : pablocariel@gmail.com\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -42,34 +42,6 @@
 								}
 							},
 							"response": [
-								{
-									"name": "Invalid username supplied",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{baseUrl}}/user/<string>",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"user",
-												"<string>"
-											]
-										}
-									},
-									"status": "Bad Request",
-									"code": 400,
-									"_postman_previewlanguage": "text",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "text/plain"
-										}
-									],
-									"cookie": [],
-									"body": ""
-								},
 								{
 									"name": "User not found",
 									"originalRequest": {
@@ -125,6 +97,34 @@
 									],
 									"cookie": [],
 									"body": "{\n \"id\": \"<long>\",\n \"full_name\": \"<string>\",\n \"phone\": \"<string>\",\n \"age\": \"<string>\",\n \"email\": \"<string>\",\n \"position\": \"<string>\",\n \"address\": \"<string>\"\n}"
+								},
+								{
+									"name": "Invalid username supplied",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"<string>"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
 								}
 							]
 						},
@@ -626,34 +626,6 @@
 									"body": ""
 								},
 								{
-									"name": "company not found",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{baseUrl}}/company/<string>",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"company",
-												"<string>"
-											]
-										}
-									},
-									"status": "No Content",
-									"code": 204,
-									"_postman_previewlanguage": "text",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "text/plain"
-										}
-									],
-									"cookie": [],
-									"body": ""
-								},
-								{
 									"name": "successful operation",
 									"originalRequest": {
 										"method": "GET",
@@ -680,6 +652,34 @@
 									],
 									"cookie": [],
 									"body": "{\n \"id\": \"<long>\",\n \"name\": \"<string>\",\n \"legal_name\": \"<string>\",\n \"email\": \"<string>\",\n \"phone\": \"<string>\",\n \"address\": \"<string>\"\n}"
+								},
+								{
+									"name": "company not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/company/<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"company",
+												"<string>"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
 								}
 							]
 						},
@@ -720,43 +720,6 @@
 							},
 							"response": [
 								{
-									"name": "Company not found",
-									"originalRequest": {
-										"method": "PUT",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/json"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"legal_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"address\": \"<string>\"\n}"
-										},
-										"url": {
-											"raw": "{{baseUrl}}/company/<string>",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"company",
-												"<string>"
-											]
-										}
-									},
-									"status": "No Content",
-									"code": 204,
-									"_postman_previewlanguage": "text",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "text/plain"
-										}
-									],
-									"cookie": [],
-									"body": ""
-								},
-								{
 									"name": "Invalid company supplied",
 									"originalRequest": {
 										"method": "PUT",
@@ -783,6 +746,43 @@
 									},
 									"status": "Bad Request",
 									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Company not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"legal_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"address\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/company/<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"company",
+												"<string>"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
 									"_postman_previewlanguage": "text",
 									"header": [
 										{
@@ -832,43 +832,6 @@
 							},
 							"response": [
 								{
-									"name": "company not found",
-									"originalRequest": {
-										"method": "PATCH",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/json"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"legal_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"address\": \"<string>\"\n}"
-										},
-										"url": {
-											"raw": "{{baseUrl}}/company/<string>",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"company",
-												"<string>"
-											]
-										}
-									},
-									"status": "No Content",
-									"code": 204,
-									"_postman_previewlanguage": "text",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "text/plain"
-										}
-									],
-									"cookie": [],
-									"body": ""
-								},
-								{
 									"name": "Invalid company supplied",
 									"originalRequest": {
 										"method": "PATCH",
@@ -895,6 +858,43 @@
 									},
 									"status": "Bad Request",
 									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "company not found",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"legal_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"address\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/company/<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"company",
+												"<string>"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
 									"_postman_previewlanguage": "text",
 									"header": [
 										{
@@ -935,34 +935,6 @@
 							},
 							"response": [
 								{
-									"name": "Invalid company supplied",
-									"originalRequest": {
-										"method": "DELETE",
-										"header": [],
-										"url": {
-											"raw": "{{baseUrl}}/company/<string>",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"company",
-												"<string>"
-											]
-										}
-									},
-									"status": "Bad Request",
-									"code": 400,
-									"_postman_previewlanguage": "text",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "text/plain"
-										}
-									],
-									"cookie": [],
-									"body": ""
-								},
-								{
 									"name": "company not found",
 									"originalRequest": {
 										"method": "DELETE",
@@ -980,6 +952,34 @@
 									},
 									"status": "No Content",
 									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Invalid company supplied",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/company/<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"company",
+												"<string>"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
 									"_postman_previewlanguage": "text",
 									"header": [
 										{
@@ -1070,7 +1070,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/company?offset=<integer>&limit=<integer>",
+							"raw": "{{baseUrl}}/company?sort_by=ASC&offset=<integer>&limit=<integer>",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1078,6 +1078,10 @@
 								"company"
 							],
 							"query": [
+								{
+									"key": "sort_by",
+									"value": "ASC"
+								},
 								{
 									"key": "offset",
 									"value": "<integer>",
@@ -1098,7 +1102,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/company?offset=<integer>&limit=<integer>",
+									"raw": "{{baseUrl}}/company?sort_by=ASC&offset=<integer>&limit=<integer>",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -1106,6 +1110,10 @@
 										"company"
 									],
 									"query": [
+										{
+											"key": "sort_by",
+											"value": "ASC"
+										},
 										{
 											"key": "offset",
 											"value": "<integer>"
@@ -1130,6 +1138,73 @@
 							"body": "{\n \"id\": \"<long>\",\n \"name\": \"<string>\",\n \"legal_name\": \"<string>\",\n \"email\": \"<string>\",\n \"phone\": \"<string>\",\n \"address\": \"<string>\"\n}"
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "Generate token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "This can only be done by the logged in user."
+			},
+			"response": [
+				{
+					"name": "successful operation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"token\": \"<string>\",\n \"expires_in\": \"<long>\"\n}"
 				}
 			]
 		}
