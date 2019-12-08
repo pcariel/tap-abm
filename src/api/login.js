@@ -21,7 +21,7 @@ class LoginAPI {
     // eslint-disable-next-line eqeqeq
     if (username == 'admin' && password == 'admin') {
       const token = jwt.sign({
-        data: 'foobar'
+        data: 'foobar',
       }, 'secret', { expiresIn: '6h' });
 
       res.status(200).json({

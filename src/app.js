@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const { isAuth } = require('./middleware');
 const { loggingExpress } = require('./logging');
 const { CompanyAPI, LoginAPI, UserAPI } = require('./api');
 
@@ -17,7 +18,7 @@ const userAPI = new UserAPI();
 const companyAPI = new CompanyAPI();
 const loginAPI = new LoginAPI();
 
-app.use('/users', userAPI.router);
+app.use('/users', isAuth, userAPI.router);
 app.use('/company', companyAPI.router);
 app.use('/login', loginAPI.router);
 

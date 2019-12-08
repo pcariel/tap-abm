@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 
 /**
  * Middleware valid if token exists & is valid
@@ -7,7 +8,19 @@ const express = require('express');
  * @param {express.NextFunction} next Express next middleware function
  */
 async function isAuth(req, res, next) {
-  next();
+  if (req.headers.authorization) {
+    const authorization = req.headers.authorization.split(' ');
+    if (authorization[0] === 'Bearer') {
+      const token = authorization[1];
+      try {
+        const decoded = jwt.verify(token, 'secret');
+        return next();
+      } catch (err) {
+        return res.sendStatus(401);
+      }
+    }
+  }
+  return res.sendStatus(401);
 }
 
 module.exports = {
