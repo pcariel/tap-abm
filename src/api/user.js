@@ -1,5 +1,5 @@
 const express = require('express');
-const { User } = require('../models');
+const { User, Company } = require('../models');
 
 class UserAPI {
   constructor() {
@@ -39,7 +39,9 @@ class UserAPI {
     const { id } = req.params;
 
     try {
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(id, {
+        include: 'Company',
+      });
       if (!user) res.sendStatus(204);
       else res.status(200).json(user);
     } catch (error) {
@@ -61,19 +63,26 @@ class UserAPI {
       age,
       email,
       position,
-      address
+      address,
+      company_id,
     } = req.body;
 
     try {
-      const user = await User.create({
-        full_name,
-        phone,
-        age,
-        email,
-        position,
-        address,
-      });
-      res.status(201).json(user);
+      const company = await Company.findByPk(company_id);
+      if (!company) res.status(400).json({ message: `company_id: ${company_id} no found` });
+      else {
+        const user = await User.create({
+          full_name,
+          phone,
+          age,
+          email,
+          position,
+          address,
+          company_id,
+        });
+        res.status(201).json(user);
+      }
+
     } catch (error) {
       next(error);
     }
