@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: tap-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tap-abm
+  template:
+    metadata:
+      labels:
+        app: tap-abm
+    spec:
+      containers:
+        - name: tap-abm
+          image: pcariel/tap-abm:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: DB_USERNAME
+              value: "tap-prod"
+            - name: DB_PASSWORD
+              value: "USING_SECRET"
+            - name: DB_NAME
+              value: "tap"
+            - name: DB_HOSTNAME
+              value: "10.85.160.3"

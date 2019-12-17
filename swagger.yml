@@ -1,0 +1,401 @@
+swagger: "2.0"
+info:
+  description: "TAP - ABM"
+  version: "1.0.0"
+  title: "TAP - ABM (User & Company)"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "pablocariel@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+basePath: "/"
+tags:
+  - name: "company"
+    description: "Operations about Company"
+  - name: "user"
+    description: "Operations about user"
+  - name: login
+    description: "Operations about login"
+schemes:
+  - "http"
+
+paths:
+  /users:
+    post:
+      tags:
+        - "user"
+      summary: "Create user"
+      description: "This can only be done by the logged in user."
+      operationId: "createUser"
+      produces:
+        - "application/json"
+
+      parameters:
+        - name: authorization
+          in: header
+          type: string
+          required: true
+        - in: "body"
+          name: "body"
+          description: "Created user object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+    get:
+      tags:
+        - "user"
+      summary: "Get all user"
+      description: "This can only be done by the logged in user."
+      operationId: "users"
+      produces:
+        - "application/json"
+      parameters:
+        - name: authorization
+          in: header
+          type: string
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+
+  /users/{id}:
+    get:
+      tags:
+        - "user"
+      summary: "Get user by user name"
+      description: ""
+      operationId: "getUserByName"
+      produces:
+        - "application/xml"
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+        - name: authorization
+          in: header
+          type: string
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Invalid username supplied"
+        204:
+          description: "User not found"
+    put:
+      tags:
+        - "user"
+      summary: "Updated user"
+      description: "This can only be done by the logged in user."
+      operationId: "updateUser"
+      produces:
+        - "application/json"
+      parameters:
+        - name: authorization
+          in: header
+          type: string
+          required: true
+        - name: "id"
+          in: "path"
+          description: "name that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated user object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        400:
+          description: "Invalid user supplied"
+        404:
+          description: "User not found"
+    patch:
+      tags:
+        - "user"
+      summary: "Updated partial user"
+      description: "This can only be done by the logged in user."
+      operationId: "patchUser"
+      produces:
+        - "application/json"
+      parameters:
+        - name: authorization
+          in: header
+          type: string
+          required: true
+        - name: "id"
+          in: "path"
+          description: "name that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated user object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        400:
+          description: "Invalid user supplied"
+        404:
+          description: "User not found"
+    delete:
+      tags:
+        - "user"
+      summary: "Delete user"
+      description: "This can only be done by the logged in user."
+      operationId: "deleteUser"
+      produces:
+        - "application/json"
+      parameters:
+        - name: authorization
+          in: header
+          type: string
+          required: true
+        - name: "id"
+          in: "path"
+          description: "The name that needs to be deleted"
+          required: true
+          type: "string"
+      responses:
+        400:
+          description: "Invalid username supplied"
+        404:
+          description: "User not found"
+  /company:
+    post:
+      tags:
+        - "company"
+      summary: "Create comnpanh"
+      operationId: "createCompany"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Created company object"
+          required: true
+          schema:
+            $ref: "#/definitions/Company"
+      responses:
+        default:
+          description: "successful operation"
+    get:
+      tags:
+        - "company"
+      summary: "Get all companies"
+      operationId: "companies"
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: sort_by
+          type: string
+          enum:
+            - ASC
+            - DESC
+          default: ASC
+          required: false
+        - in: query
+          name: offset
+          type: integer
+          required: false
+          description: The number of items to skip before starting to collect the result set.
+        - in: query
+          name: limit
+          type: integer
+          required: false
+          description: The number of items to return.
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Company"
+
+  /company/{id}:
+    get:
+      tags:
+        - "company"
+      summary: "Get company by  id"
+      description: ""
+      operationId: "getCompanyById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Company"
+        400:
+          description: "Invalid id supplied"
+        204:
+          description: "company not found"
+    put:
+      tags:
+        - "company"
+      summary: "Updated company"
+      operationId: "updateCompany"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated company object"
+          required: true
+          schema:
+            $ref: "#/definitions/Company"
+      responses:
+        400:
+          description: "Invalid company supplied"
+        204:
+          description: "Company not found"
+    patch:
+      tags:
+        - "company"
+      summary: "Updated partial company"
+      operationId: "patchCompany"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "name that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated company object"
+          required: true
+          schema:
+            $ref: "#/definitions/Company"
+      responses:
+        400:
+          description: "Invalid company supplied"
+        204:
+          description: "company not found"
+    delete:
+      tags:
+        - "company"
+      summary: "Delete company"
+      operationId: "deleteCompany"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "The id that needs to be deleted"
+          required: true
+          type: "string"
+      responses:
+        400:
+          description: "Invalid company supplied"
+        204:
+          description: "company not found"
+  /login:
+    post:
+      tags:
+        - "login"
+      summary: "Generate token"
+      description: "This can only be done by the logged in user."
+      operationId: "login"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Created user object"
+          required: true
+          schema:
+            $ref: "#/definitions/LoginRequest"
+      responses:
+        200:
+          schema:
+            $ref: "#/definitions/LoginResponse"
+          description: "successful operation"
+
+definitions:
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      full_name:
+        type: "string"
+      phone:
+        type: "string"
+      age:
+        type: "string"
+      email:
+        type: "string"
+      position:
+        type: "string"
+      address:
+        type: "string"
+      company_id:
+        type: "string"
+  Company:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      legal_name:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+      address:
+        type: "string"
+  LoginRequest:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+        example: "admin"
+      password:
+        type: "string"
+        example: "admin"
+  LoginResponse:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+      expires_in:
+        type: "integer"
+        format: "int64"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
