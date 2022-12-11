@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/pcariel/tap-abm#readme",
   "dependencies": {
-    "express": "4.17.1",
+    "express": "4.17.3",
     "helmet": "3.21.2",
     "body-parser": "1.19.0",
     "winston": "3.2.1",
